@@ -1,5 +1,5 @@
 export * from './keys.ts'
-export * from './relay.ts'
+export * from './relayNym.ts'
 export * from './event.ts'
 export * from './filter.ts'
 export * from './pool.ts'

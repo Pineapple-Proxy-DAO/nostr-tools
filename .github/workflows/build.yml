@@ -1,0 +1,31 @@
+name: Build project
+
+on:
+  push:
+    branches: [ nym ]
+  pull_request:
+    branches: [ nym ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: extractions/setup-just@v1
+      - run: just install-dependencies
+      - run: just build
+      - run: just test
+      - run: just emit-types
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: |
+            lib/*
