@@ -11,7 +11,7 @@ class NymClient {
   }
 
   async init() {
-    if (!window) {
+    if (typeof window === 'undefined') {
       return
     }
 
